@@ -1,0 +1,66 @@
+{
+  "name": "release-workspaces",
+  "version": "0.0.0",
+  "description": "CLI that releases NPM packages using Yarn Berry (v2)",
+  "author": "Geoff Whatley <me@geoffwhatley.com> (https://geoffwhatley.com/)",
+  "license": "MIT",
+  "homepage": "https://github.com/meatwallace/release-workspaces#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meatwallace/release-workspaces.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meatwallace/release-workspaces/issues"
+  },
+  "bin": "bin/release-workspaces.js",
+  "main": "dist/index.js",
+  "module": "dist/release-workspaces.esm.js",
+  "typings": "dist/index.d.ts",
+  "engines": {
+    "node": ">=10.0.0",
+    "yarn": ">=2.0.0"
+  },
+  "scripts": {
+    "build": "pnpify tsdx build --target node",
+    "commit": "commit",
+    "start": "pnpify tsdx watch --target node",
+    "release": "release-workspaces",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@berry/pnpify": "0.0.6",
+    "@commitlint/cli": "8.0.0",
+    "@commitlint/prompt-cli": "8.0.0",
+    "@meatwallace/commitlint-config": "1.2.0",
+    "@meatwallace/jest-config-base": "1.3.0",
+    "@meatwallace/prettier-config": "1.2.0",
+    "@types/jest": "24.0.15",
+    "chalk": "2.4.2",
+    "husky": "3.0.0",
+    "jest": "24.8.0",
+    "jest-watch-typeahead": "0.3.1",
+    "lint-staged": "9.1.0",
+    "prettier": "1.18.2",
+    "pretty-quick": "1.11.1",
+    "ts-jest": "24.0.2",
+    "tsdx": "0.7.2",
+    "tslib": "1.10.0",
+    "typescript": "3.5.3"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "dist",
+    "package.json",
+    "README.md",
+    "yarn.lock"
+  ],
+  "keywords": [
+    "yarn",
+    "workspaces",
+    "npm",
+    "publish",
+    "release",
+    "semantic-versioning",
+    "cli"
+  ]
+}
