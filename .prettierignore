@@ -1,1 +1,4 @@
+.pnp.js
 .yarn
+dist
+yarn.lock
