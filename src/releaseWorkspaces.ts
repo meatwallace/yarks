@@ -41,11 +41,16 @@ export async function releaseWorkspaces(options) {
     console.log('workspace:', workspace.name);
     console.log('currentVersion:', workspace.currentVersion);
     console.log('currentRelease:', workspace.currentRelease);
-    console.log('nextRelease:', workspace.nextRelease);
-    console.log('nextVersion:', workspace.nextVersion);
-    console.log('nextTag:', workspace.nextTag);
-    console.log('releaseNotes:');
-    console.log(formatMarkdown(workspace.releaseNotes, options));
+
+    if (workspace.nextRelease) {
+      console.log('nextRelease:', workspace.nextRelease);
+      console.log('nextVersion:', workspace.nextVersion);
+      console.log('nextTag:', workspace.nextTag);
+      console.log('releaseNotes:');
+      console.log(formatMarkdown(workspace.releaseNotes, options));
+    } else {
+      console.log('no release required');
+    }
   }
 
   if (!isCI) {
@@ -85,7 +90,7 @@ async function createReleaseContext(workspaces, options) {
 
     let currentRelease = await getCurrentRelease(workspace, tags, options);
     let currentVersion = workspace.manifest.version;
-    let commits = await getWorkspaceCommits(workspace, options);
+    let commits = await getWorkspaceCommits(workspace, currentRelease, options);
     let nextRelease = getNextReleaseType(commits);
     let nextTag = null;
     let nextVersion = null;
@@ -173,8 +178,8 @@ async function getGitTags(options) {
   return tags;
 }
 
-async function getWorkspaceCommits(workspace, options) {
-  let commits = await getGitCommits(workspace, options);
+async function getWorkspaceCommits(workspace, currentRelease, options) {
+  let commits = await getGitCommits(workspace, currentRelease, options);
 
   // if we are evaluating a non-root workspace, then we want to filter out any
   // commits that aren't relevant
@@ -185,7 +190,7 @@ async function getWorkspaceCommits(workspace, options) {
   // parse the commit messages and create commit objects compatible with
   // conventional-changelog
   commits = commits.map((commit) => {
-    return { ...commit, ...parseCommit.sync(commit.message) };
+    return { ...commit, hash: commit.oid, ...parseCommit.sync(commit.message) };
   });
 
   // run conventional-changelog's filter to remove any unnecesary commits ex.
@@ -195,10 +200,32 @@ async function getWorkspaceCommits(workspace, options) {
   return commits;
 }
 
-async function getGitCommits(workspace, options) {
-  let commits = await options.git.log({
+async function getGitCommits(workspace, currentRelease, options) {
+  let commits = [];
+
+  // if there's no current release, just get the entire commit log
+  if (!currentRelease) {
+    commits = await options.git.log({ dir: options.cwd });
+
+    return commits;
+  }
+
+  // resolve our current release tag to it's SHA1
+  let currentReleaseSHA1 = await options.git.resolveRef({
     dir: options.cwd,
-    ref: workspace.lastRelease,
+    ref: currentRelease,
+  });
+
+  // use the SHA1 to resolve the commit information
+  let currentReleaseCommit = await options.git.readObject({
+    dir: options.cwd,
+    oid: currentReleaseSHA1,
+  });
+
+  // grab all commits since the timestamp of the last release commit
+  commits = await options.git.log({
+    dir: options.cwd,
+    since: new Date(currentReleaseCommit.object.committer.timestamp * 1000),
   });
 
   return commits;
@@ -422,9 +449,7 @@ async function tagRelease(workspace, options) {
 }
 
 async function publishPackage(workspace, options) {
-  await execa('yarn', ['npm', 'publish', '--tolerate-republish'], {
-    cwd: workspace.location,
-  });
+  await execa('yarn', ['npm', 'publish'], { cwd: workspace.location });
 }
 
 async function pushChanges(workspace, options, env) {
