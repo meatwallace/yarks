@@ -1,5 +1,11 @@
 # release-workspaces
 
+## 1.0.1 (2019-07-13)
+
+### Bug Fixes
+
+- **commit-log:** use previous release's commit date to filter commit log ([edc36d5](https://github.com/meatwallace/release-workspaces.git/commits/edc36d5)), closes [#28](https://github.com/meatwallace/release-workspaces.git/issues/28)
+
 # 1.0.0 (2019-07-13)
 
 ### Features
