@@ -6,7 +6,6 @@ import { cleanEnv, str } from 'envalid';
 import execa from 'execa';
 import { promises as fs } from 'fs';
 import getStream from 'get-stream';
-import hostedGitInfo from 'hosted-git-info';
 import isCI from 'is-ci';
 import intoStream from 'into-stream';
 import * as os from 'os';
@@ -383,7 +382,7 @@ async function releaseWorkspace(workspace, releaseContext, options, env) {
 
 async function generateReleaseNotes(workspace, commits, nextVersion, options) {
   let changelogContext = {
-    repoUrl: options.repositoryURL,
+    repoUrl: options.repositoryURL.replace(/\.git$/, ''),
     version: nextVersion,
   };
 
