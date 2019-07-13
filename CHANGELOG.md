@@ -1,5 +1,11 @@
 # release-workspaces
 
+## 1.0.2 (2019-07-13)
+
+### Bug Fixes
+
+- **changelog:** remove .git suffix in changelog links ([058b617](https://github.com/meatwallace/release-workspaces/commits/058b617)), closes [#30](https://github.com/meatwallace/release-workspaces/issues/30)
+
 ## 1.0.1 (2019-07-13)
 
 ### Bug Fixes
