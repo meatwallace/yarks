@@ -97,7 +97,7 @@ async function createReleaseContext(workspaces, options) {
 
     if (nextRelease) {
       nextVersion = semver.inc(currentVersion, nextRelease);
-      nextTag = `${workspace.name}@${nextVersion}`;
+      nextTag = `${workspace.name}@v${nextVersion}`;
       releaseNotes = await generateReleaseNotes(
         workspace,
         commits,
