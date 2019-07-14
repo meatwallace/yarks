@@ -82,12 +82,12 @@
     "typescript": "3.5.3"
   },
   "resolutions": {
-    "async-lock": "github:meatwallace/async-lock#remove-empty-postinstall-script"
+    "async-lock": "^1.2.1"
   },
   "files": [
+    "bin/*",
     "CHANGELOG.md",
-    "bin",
-    "dist",
+    "dist/*",
     "package.json",
     "README.md",
     "yarn.lock"

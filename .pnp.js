@@ -98,7 +98,6 @@ function $$SETUP_STATE(hydrateRuntimeState) {
       114,
       112,
       110,
-      109,
       2
     ],
     "packageRegistryData": [
@@ -2861,10 +2860,11 @@ function $$SETUP_STATE(hydrateRuntimeState) {
         }]
       ]],
       ["async-lock", [
-        ["github:meatwallace/async-lock#remove-empty-postinstall-script", {
-          "packageLocation": "./.yarn/cache/async-lock-github-52993f5618451d3605e3f98c5c61ad5a1eeb7f6b8ba191204cf2dd2b812db02f.zip/sources/",
+        ["npm:1.2.1", {
+          "packageLocation": "./.yarn/cache/async-lock-npm-1.2.1-b780f070801f5d88f3684d24d675a5cfe05c9ea187c416d65f2767c1188ff486.zip/node_modules/async-lock/",
           "packageDependencies": [
-            ["async-lock", "github:meatwallace/async-lock#remove-empty-postinstall-script"]
+            ["async-lock", "npm:1.2.1"],
+            ["grunt-env", "npm:0.4.4"]
           ]
         }]
       ]],
@@ -5338,6 +5338,16 @@ function $$SETUP_STATE(hydrateRuntimeState) {
           ]
         }]
       ]],
+      ["grunt-env", [
+        ["npm:0.4.4", {
+          "packageLocation": "./.yarn/cache/grunt-env-npm-0.4.4-0950697f4e18ebcb27b71f99c07af2e12a18c384775d710e8498b838f96f7260.zip/node_modules/grunt-env/",
+          "packageDependencies": [
+            ["grunt-env", "npm:0.4.4"],
+            ["ini", "npm:1.3.5"],
+            ["lodash", "npm:2.4.2"]
+          ]
+        }]
+      ]],
       ["gzip-size", [
         ["npm:5.1.1", {
           "packageLocation": "./.yarn/cache/gzip-size-npm-5.1.1-e19c9d212cea1616f834e48f3658e2ce66299e8112f7d080092f5297813c5b87.zip/node_modules/gzip-size/",
@@ -6187,7 +6197,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
           "packageLocation": "./.yarn/cache/isomorphic-git-npm-0.55.5-92ec3434e4307a63cdd8b657093bfb11e8987dc70029e3cafa53eccdb8c1f709.zip/node_modules/isomorphic-git/",
           "packageDependencies": [
             ["isomorphic-git", "npm:0.55.5"],
-            ["async-lock", "github:meatwallace/async-lock#remove-empty-postinstall-script"],
+            ["async-lock", "npm:1.2.1"],
             ["clean-git-ref", "npm:1.0.3"],
             ["crc-32", "npm:1.2.0"],
             ["diff-lines", "npm:1.1.1"],
@@ -7112,6 +7122,12 @@ function $$SETUP_STATE(hydrateRuntimeState) {
         }]
       ]],
       ["lodash", [
+        ["npm:2.4.2", {
+          "packageLocation": "./.yarn/cache/lodash-npm-2.4.2-85645f98c300521cd1ef1268efa7bd491225f1d057e33dad35ca0a4904cc37f6.zip/node_modules/lodash/",
+          "packageDependencies": [
+            ["lodash", "npm:2.4.2"]
+          ]
+        }],
         ["npm:3.10.1", {
           "packageLocation": "./.yarn/cache/lodash-npm-3.10.1-d09aab15d4ef16caeb634be54091647097db60a694396814e27dc570e9d873e7.zip/node_modules/lodash/",
           "packageDependencies": [
