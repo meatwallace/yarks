@@ -1,0 +1,82 @@
+{
+  "name": "@yarks/core",
+  "version": "1.0.0-development",
+  "description": "core API for yarks, a yarn workspaces task runner",
+  "author": "Geoff Whatley <me@geoffwhatley.com> (https://geoffwhatley.com/)",
+  "license": "MIT",
+  "homepage": "https://github.com/meatwallace/yarks#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meatwallace/yarks.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/meatwallace/yarks/issues"
+  },
+  "main": "dist/index.js",
+  "module": "dist/core.esm.js",
+  "typings": "dist/index.d.ts",
+  "engines": {
+    "node": ">=10.0.0",
+    "yarn": ">=2.0.0"
+  },
+  "scripts": {
+    "build": "pnpify tsdx build --target node",
+    "start": "pnpify tsdx watch --target node"
+  },
+  "dependencies": {
+    "conventional-changelog-writer": "4.0.3",
+    "conventional-commits-filter": "2.0.1",
+    "conventional-commits-parser": "3.0.1",
+    "deepmerge": "4.0.0",
+    "envalid": "5.0.0",
+    "execa": "2.0.3",
+    "get-stream": "5.1.0",
+    "hosted-git-info": "2.7.1",
+    "into-stream": "5.1.0",
+    "is-ci": "2.0.0",
+    "prettier": "1.18.2",
+    "semver": "6.2.0",
+    "tiny-invariant": "1.0.5",
+    "tiny-warning": "1.0.3",
+    "yaml": "1.6.0"
+  },
+  "devDependencies": {
+    "@berry/pnpify": "0.0.6",
+    "@types/deepmerge": "2.2.0",
+    "@types/execa": "0.9.0",
+    "@types/get-stream": "3.0.2",
+    "@types/hosted-git-info": "2.7.0",
+    "@types/into-stream": "3.1.1",
+    "@types/is-ci": "2.0.0",
+    "@types/node": "12.6.2",
+    "@types/prettier": "1.16.4",
+    "@types/semver": "6.0.1",
+    "@types/typescript": "2.0.0",
+    "@types/yaml": "1.0.2",
+    "tsdx": "0.7.2",
+    "tslib": "1.10.0",
+    "typescript": "3.5.3"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "dist",
+    "package.json",
+    "README.md",
+    "yarn.lock"
+  ],
+  "keywords": [
+    "automation",
+    "build",
+    "changelog",
+    "task",
+    "npm",
+    "package",
+    "publish",
+    "release",
+    "semver",
+    "version",
+    "workspaces",
+    "yarn"
+  ]
+}
