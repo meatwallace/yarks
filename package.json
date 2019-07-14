@@ -1,7 +1,8 @@
 {
-  "name": "@yarks/cli",
-  "version": "1.0.8",
-  "description": "CLI that releases NPM packages using Yarn Berry (v2)",
+  "name": "@yarks/monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "the home of yarks, a yarn workspaces task runner",
   "author": "Geoff Whatley <me@geoffwhatley.com> (https://geoffwhatley.com/)",
   "license": "MIT",
   "homepage": "https://github.com/meatwallace/yarks#readme",
@@ -12,62 +13,21 @@
   "bugs": {
     "url": "https://github.com/meatwallace/yarks/issues"
   },
-  "bin": {
-    "release-workspaces": "bin/release-workspaces.js"
-  },
-  "main": "dist/index.js",
-  "module": "dist/yarks.esm.js",
-  "typings": "dist/index.d.ts",
-  "engines": {
-    "node": ">=10.0.0",
-    "yarn": ">=2.0.0"
-  },
   "scripts": {
-    "build": "pnpify tsdx build --target node --entry src/cli.ts",
-    "watch": "nodemon --exec yarn yarks",
+    "build": "yarn workspaces foreach --parallel --topological run build",
     "commit": "commit",
-    "start": "pnpify tsdx watch --target node --entry src/cli.ts",
+    "clean": "rm -rf packages/**/dist",
     "release": "release-workspaces",
     "test": "jest"
   },
-  "dependencies": {
-    "conventional-changelog-angular": "5.0.3",
-    "conventional-changelog-writer": "4.0.3",
-    "conventional-commits-filter": "2.0.1",
-    "conventional-commits-parser": "3.0.1",
-    "deepmerge": "4.0.0",
-    "envalid": "5.0.0",
-    "execa": "2.0.3",
-    "get-stream": "5.1.0",
-    "hosted-git-info": "2.7.1",
-    "into-stream": "5.1.0",
-    "is-ci": "2.0.0",
-    "isomorphic-git": "0.55.5",
-    "prettier": "1.18.2",
-    "semver": "6.2.0",
-    "tiny-invariant": "1.0.5",
-    "tiny-warning": "1.0.3",
-    "yaml": "1.6.0"
-  },
   "devDependencies": {
-    "@berry/pnpify": "0.0.6",
     "@commitlint/cli": "8.0.0",
     "@commitlint/prompt-cli": "8.0.0",
     "@meatwallace/commitlint-config": "1.2.0",
     "@meatwallace/jest-config-base": "1.3.0",
     "@meatwallace/prettier-config": "1.2.0",
-    "@types/chalk": "2.2.0",
-    "@types/deepmerge": "2.2.0",
-    "@types/execa": "0.9.0",
-    "@types/get-stream": "3.0.2",
-    "@types/hosted-git-info": "2.7.0",
-    "@types/into-stream": "3.1.1",
-    "@types/is-ci": "2.0.0",
     "@types/jest": "24.0.15",
-    "@types/node": "12.6.2",
-    "@types/prettier": "1.16.4",
-    "@types/semver": "6.0.1",
-    "@types/yaml": "1.0.2",
+    "@yarks/cli": "workspace:packages/cli",
     "babel-plugin-transform-async-to-promises": "0.8.12",
     "chalk": "2.4.2",
     "husky": "3.0.0",
@@ -75,30 +35,11 @@
     "jest-watch-typeahead": "0.3.1",
     "lint-staged": "9.1.0",
     "nodemon": "1.19.1",
+    "prettier": "1.18.2",
     "pretty-quick": "1.11.1",
-    "ts-jest": "24.0.2",
-    "tsdx": "0.7.2",
-    "tslib": "1.10.0",
-    "typescript": "3.5.3"
+    "ts-jest": "24.0.2"
   },
-  "resolutions": {
-    "async-lock": "^1.2.1"
-  },
-  "files": [
-    "bin/*",
-    "CHANGELOG.md",
-    "dist/*",
-    "package.json",
-    "README.md",
-    "yarn.lock"
-  ],
-  "keywords": [
-    "yarn",
-    "workspaces",
-    "npm",
-    "publish",
-    "release",
-    "semantic-versioning",
-    "cli"
+  "workspaces": [
+    "packages/*"
   ]
 }

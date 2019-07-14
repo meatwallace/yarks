@@ -1,0 +1,70 @@
+{
+  "name": "@yarks/cli",
+  "version": "1.0.8",
+  "description": "CLI for yarks, a yarn workspaces task runner",
+  "author": "Geoff Whatley <me@geoffwhatley.com> (https://geoffwhatley.com/)",
+  "license": "MIT",
+  "homepage": "https://github.com/meatwallace/yarks#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meatwallace/yarks.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/meatwallace/yarks/issues"
+  },
+  "bin": {
+    "release-workspaces": "bin/release-workspaces.js"
+  },
+  "main": "dist/index.js",
+  "module": "dist/cli.esm.js",
+  "typings": "dist/index.d.ts",
+  "engines": {
+    "node": ">=10.0.0",
+    "yarn": ">=2.0.0"
+  },
+  "scripts": {
+    "build": "pnpify tsdx build --target node",
+    "start": "pnpify tsdx watch --target node"
+  },
+  "dependencies": {
+    "@yarks/core": "workspace:packages/core",
+    "conventional-changelog-angular": "5.0.3",
+    "isomorphic-git": "0.55.5",
+    "prettier": "1.18.2"
+  },
+  "devDependencies": {
+    "@berry/pnpify": "0.0.6",
+    "@types/node": "12.6.2",
+    "@types/prettier": "1.16.4",
+    "@types/typescript": "2.0.0",
+    "tsdx": "0.7.2",
+    "tslib": "1.10.0",
+    "typescript": "3.5.3"
+  },
+  "resolutions": {
+    "async-lock": "^1.2.1"
+  },
+  "files": [
+    "bin/*",
+    "CHANGELOG.md",
+    "dist/*",
+    "package.json",
+    "README.md",
+    "yarn.lock"
+  ],
+  "keywords": [
+    "automation",
+    "build",
+    "changelog",
+    "task",
+    "npm",
+    "package",
+    "publish",
+    "release",
+    "semver",
+    "version",
+    "workspaces",
+    "yarn"
+  ]
+}
