@@ -1,6 +1,5 @@
 import conventionalChangelogAngular from 'conventional-changelog-angular';
 import * as fs from 'fs';
-// import hostedGitInfo from 'hosted-git-info';
 import * as git from 'isomorphic-git';
 import * as path from 'path';
 import prettier from 'prettier';
@@ -11,7 +10,7 @@ git.plugins.set('fs', fs);
 async function executeCLI() {
   let changelogConfig = await conventionalChangelogAngular;
   let cwd = process.cwd();
-  let prettierConfig = prettier.resolveConfig(cwd);
+  let prettierConfig = await prettier.resolveConfig(cwd);
   let repositoryURL = await getManifestRepositoryURL(cwd);
 
   let defaultOptions = {
