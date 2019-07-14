@@ -1,6 +1,6 @@
 # @yarks/cli
 
-## 1.0.6 (2019-07-14)
+## 1.0.7 (2019-07-14)
 
 ### Bug Fixes
 
@@ -10,6 +10,11 @@
 - **publish:** include bin and dist dirs in published package
   ([5d8a05a](https://github.com/meatwallace/yarks/commit/5d8a05a)), closes
   [#36](https://github.com/meatwallace/yarks/issues/36)
+
+## 1.0.6 (2019-07-14)
+
+This release was not succesfully published to the package registry and changes
+have been pushed to the next release.
 
 ## 1.0.5 (2019-07-14)
 
