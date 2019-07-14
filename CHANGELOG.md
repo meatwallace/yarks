@@ -1,5 +1,11 @@
 # release-workspaces
 
+## 1.0.3 (2019-07-14)
+
+### Bug Fixes
+
+- **tags:** prefix version number in tag with v ([4db7f2b](https://github.com/meatwallace/release-workspaces/commits/4db7f2b)), closes [#32](https://github.com/meatwallace/release-workspaces/issues/32)
+
 ## 1.0.2 (2019-07-13)
 
 ### Bug Fixes
