@@ -1,5 +1,16 @@
 # @yarks/cli
 
+## 1.0.6 (2019-07-14)
+
+### Bug Fixes
+
+- **deps:** use latest async-lock in package resolutions table
+  ([4dd1bf7](https://github.com/meatwallace/yarks/commit/4dd1bf7)), closes
+  [#37](https://github.com/meatwallace/yarks/issues/37)
+- **publish:** include bin and dist dirs in published package
+  ([5d8a05a](https://github.com/meatwallace/yarks/commit/5d8a05a)), closes
+  [#36](https://github.com/meatwallace/yarks/issues/36)
+
 ## 1.0.5 (2019-07-14)
 
 ### Bug Fixes
