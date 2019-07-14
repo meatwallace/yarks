@@ -1,10 +1,10 @@
-# release-workspaces
+# yarks
 
-> automated package releasing workflow with Yarn Berry (v2)
+> automated package releasing workflow with Yarn v2 (Berry)
 
-`release-workspaces` automates the process of publishing NPM packages and
-accompanying GitHub releases using Yarn Berry's (v2) workspaces, including
-automatic [semantic versioning](http://semver.org/) and changelog generation.
+`yarks` automates the process of publishing NPM packages and accompanying GitHub
+releases using Yarn v2's (Berry) workspaces, including automatic
+[semantic versioning](http://semver.org/) and changelog generation.
 
 ## Usage
 
@@ -15,7 +15,7 @@ Prerequisites:
 - `@berry/plugin-version`
 
 ```sh
-yarn dlx release-workspaces
+yarn dlx yarks release-workspaces
 ```
 
 ## Overview
