@@ -1,20 +1,22 @@
 {
-  "name": "release-workspaces",
+  "name": "@yarks/cli",
   "version": "1.0.5",
   "description": "CLI that releases NPM packages using Yarn Berry (v2)",
   "author": "Geoff Whatley <me@geoffwhatley.com> (https://geoffwhatley.com/)",
   "license": "MIT",
-  "homepage": "https://github.com/meatwallace/release-workspaces#readme",
+  "homepage": "https://github.com/meatwallace/yarks#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/meatwallace/release-workspaces.git"
+    "url": "https://github.com/meatwallace/yarks.git"
   },
   "bugs": {
-    "url": "https://github.com/meatwallace/release-workspaces/issues"
+    "url": "https://github.com/meatwallace/yarks/issues"
   },
-  "bin": "bin/release-workspaces.js",
+  "bin": {
+    "release-workspaces": "bin/release-workspaces.js"
+  },
   "main": "dist/index.js",
-  "module": "dist/release-workspaces.esm.js",
+  "module": "dist/yarks.esm.js",
   "typings": "dist/index.d.ts",
   "engines": {
     "node": ">=10.0.0",
@@ -22,7 +24,7 @@
   },
   "scripts": {
     "build": "pnpify tsdx build --target node --entry src/cli.ts",
-    "watch": "nodemon --exec yarn release-workspaces",
+    "watch": "nodemon --exec yarn yarks",
     "commit": "commit",
     "start": "pnpify tsdx watch --target node --entry src/cli.ts",
     "release": "release-workspaces",
