@@ -1,10 +1,20 @@
 # release-workspaces
 
+## 1.0.5 (2019-07-14)
+
+### Bug Fixes
+
+- **prettier:** add missing await to prettier config resolution
+  ([484e514](https://github.com/meatwallace/release-workspaces/commit/484e514)),
+  closes [#31](https://github.com/meatwallace/release-workspaces/issues/31)
+
 ## 1.0.4 (2019-07-14)
 
 ### Bug Fixes
 
-- **changelog:** hardcode commit url suffix for github compatibility ([0040dfc](https://github.com/meatwallace/release-workspaces/commit/0040dfc)), closes [#33](https://github.com/meatwallace/release-workspaces/issues/33)
+- **changelog:** hardcode commit url suffix for github compatibility
+  ([0040dfc](https://github.com/meatwallace/release-workspaces/commit/0040dfc)),
+  closes [#33](https://github.com/meatwallace/release-workspaces/issues/33)
 
 ## 1.0.3 (2019-07-14)
 

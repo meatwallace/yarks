@@ -1,6 +1,6 @@
 {
   "name": "release-workspaces",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "CLI that releases NPM packages using Yarn Berry (v2)",
   "author": "Geoff Whatley <me@geoffwhatley.com> (https://geoffwhatley.com/)",
   "license": "MIT",
