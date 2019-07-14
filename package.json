@@ -86,6 +86,7 @@
   },
   "files": [
     "CHANGELOG.md",
+    "bin",
     "dist",
     "package.json",
     "README.md",
