@@ -1,6 +1,6 @@
 {
   "name": "@yarks/cli",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "CLI that releases NPM packages using Yarn Berry (v2)",
   "author": "Geoff Whatley <me@geoffwhatley.com> (https://geoffwhatley.com/)",
   "license": "MIT",

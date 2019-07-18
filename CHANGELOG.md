@@ -1,5 +1,16 @@
 # @yarks/cli
 
+## 1.0.8 (2019-07-18)
+
+### Bug Fixes
+
+- **core:** include last release commit in our source git log
+  ([d89b966](https://github.com/meatwallace/yarks/commit/d89b966)), closes
+  [#39](https://github.com/meatwallace/yarks/issues/39)
+- **env:** remove unused git commiter environment variables
+  ([98dfa51](https://github.com/meatwallace/yarks/commit/98dfa51)), closes
+  [#43](https://github.com/meatwallace/yarks/issues/43)
+
 ## 1.0.7 (2019-07-14)
 
 ### Bug Fixes
