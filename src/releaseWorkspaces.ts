@@ -62,8 +62,6 @@ export async function releaseWorkspaces(options) {
     GITHUB_TOKEN: str(),
     GIT_AUTHOR_NAME: str(),
     GIT_AUTHOR_EMAIL: str(),
-    GIT_COMMITER_NAME: str(),
-    GIT_COMMITER_EMAIL: str(),
   };
 
   // TODO(#22): extract env validation to function and pass via options
