@@ -225,7 +225,10 @@ async function getGitCommits(workspace, currentRelease, options) {
   // grab all commits since the timestamp of the last release commit
   commits = await options.git.log({
     dir: options.cwd,
-    since: new Date(currentReleaseCommit.object.committer.timestamp * 1000),
+
+    // use the current release commits timestamp -1 millisecond so that it's
+    // included in our log
+    since: new Date(currentReleaseCommit.object.committer.timestamp * 1000 - 1),
   });
 
   return commits;
