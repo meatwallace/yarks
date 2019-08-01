@@ -1,5 +1,14 @@
 # @yarks/cli
 
+# 1.1.0 (2019-08-01)
+
+### Features
+
+- **packages:** split core api and cli into seperate workspaces
+  ([e28146b](https://github.com/meatwallace/yarks/commit/e28146b)), closes
+  [#14](https://github.com/meatwallace/yarks/issues/14)
+  [#2](https://github.com/meatwallace/yarks/issues/2)
+
 ## 1.0.8 (2019-07-18)
 
 ### Bug Fixes
