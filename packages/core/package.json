@@ -1,6 +1,6 @@
 {
   "name": "@yarks/core",
-  "version": "1.0.0-development",
+  "version": "1.0.0",
   "description": "core API for yarks, a yarn workspaces task runner",
   "author": "Geoff Whatley <me@geoffwhatley.com> (https://geoffwhatley.com/)",
   "license": "MIT",
