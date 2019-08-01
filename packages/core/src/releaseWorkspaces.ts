@@ -321,7 +321,7 @@ async function configureRegistryAuth(releaseContext, options, env) {
   let configPath = path.resolve(os.homedir(), '.yarnrc.yml');
 
   // TODO(#21): replace hardcoded registry with default from yarn config
-  let registry = 'https://registry.yarnpkg.com/';
+  let registry = 'https://registry.yarnpkg.com';
 
   // TODO(#4): iterate over packages and authenticate against relevant registry
   let token = await getAuthToken(configPath, registry);
