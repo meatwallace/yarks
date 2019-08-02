@@ -35,6 +35,7 @@ export async function releaseWorkspaces(options) {
   let workspaceNames = workspaces.map((workspace) => workspace.name);
   let releaseContext = await createReleaseContext(workspaces, options);
 
+  // log out an overview of our release strategy
   for (let workspaceName of workspaceNames) {
     let workspace = releaseContext[workspaceName];
 
@@ -53,6 +54,7 @@ export async function releaseWorkspaces(options) {
     }
   }
 
+  // abort if we're not in a CI environment
   if (!isCI) {
     return releaseContext;
   }
@@ -90,8 +92,28 @@ export async function releaseWorkspaces(options) {
   return releaseContext;
 }
 
+type Commit = any;
+
+type Workspace = {
+  commits: Array<Commit>;
+  currentRelease: string;
+  currentVersion: string;
+  dependencies: Array<string>;
+  name: string;
+  nextRelease: string | null;
+  nextTag: string | null;
+  nextVersion: string | null;
+  releaseNotes: string;
+};
+
+const DEPENDENCIES_HEADER = '### Dependencies';
+
+// TODO: split out into smaller functions to reduce the complexity and
+// redundancy
 async function createReleaseContext(workspaces, options) {
   let tags = await getGitTags(options);
+
+  let releases = [];
 
   let releaseContext = await workspaces.reduce(async (accumP, workspace) => {
     let accum = await accumP;
@@ -99,37 +121,116 @@ async function createReleaseContext(workspaces, options) {
     let currentRelease = await getCurrentRelease(workspace, tags, options);
     let currentVersion = workspace.manifest.version;
     let commits = await getWorkspaceCommits(workspace, currentRelease, options);
+    let dependencies = getWorkspaceDependencies(workspace, workspaces);
     let nextRelease = getNextReleaseType(commits);
-    let nextTag = null;
-    let nextVersion = null;
-    let releaseNotes = null;
-
-    if (nextRelease) {
-      nextVersion = semver.inc(currentVersion, nextRelease);
-      nextTag = `${workspace.name}@v${nextVersion}`;
-      releaseNotes = await generateReleaseNotes(
-        workspace,
-        commits,
-        nextVersion,
-        options,
-      );
-    }
+    let nextVersion = getNextVersion(currentVersion, nextRelease);
+    let nextTag = getNextTag(workspace.name, nextVersion);
+    let releaseNotes = await generateReleaseNotes(
+      workspace,
+      commits,
+      nextVersion,
+      options,
+    );
 
     accum[workspace.name] = {
       ...workspace,
       commits,
       currentRelease,
       currentVersion,
+      dependencies,
       nextRelease,
       nextTag,
       nextVersion,
       releaseNotes,
     };
 
+    if (nextRelease) {
+      releases.push(workspace.name);
+    }
+
     return accum;
   }, Promise.resolve({}));
 
+  workspaces = Object.values(releaseContext);
+
+  const processWorkspaceSiblings = async (workspace: Workspace) => {
+    if (!workspace.nextRelease) {
+      return;
+    }
+
+    // repeatedly parsing the release context's values like this is incredibly
+    // wasteful - ideally we'd graph our dependency tree and simply walk it
+    await Promise.all(
+      workspaces.map(async (sibling: Workspace) => {
+        if (!sibling.dependencies.includes(workspace.name)) {
+          return;
+        }
+
+        if (!sibling.nextRelease) {
+          sibling.nextRelease = RELEASE_TYPE.PATCH;
+          sibling.nextVersion = getNextVersion(
+            sibling.currentVersion,
+            sibling.nextRelease,
+          );
+          sibling.nextTag = getNextTag(sibling.name, sibling.nextVersion);
+        }
+
+        // if we don't already have release notes, we want to generate a stub
+        // that we can amend our dependency changes to
+        if (!sibling.releaseNotes) {
+          sibling.releaseNotes = await generateReleaseNotes(
+            sibling,
+            [],
+            sibling.nextVersion,
+            options,
+          );
+        }
+
+        // if this is our first dependency change, add a header to the notes
+        if (!sibling.releaseNotes.includes(DEPENDENCIES_HEADER)) {
+          sibling.releaseNotes = `${sibling.releaseNotes}\n${DEPENDENCIES_HEADER}\n`;
+        }
+
+        // add our change log item describing the dependency bump
+        let changeItem = `* **${workspace.name}:** upgraded to ${workspace.nextVersion}`;
+        sibling.releaseNotes = `${sibling.releaseNotes}\n${changeItem}`;
+
+        // if we've flagged this workspace for release already, exit to avoid
+        // recursively processing dependencies forever
+        if (releases.includes(sibling.name)) {
+          return;
+        } else {
+          // if we haven't processed this workspaces' dependencies, track this
+          // workspace and then process it
+          releases.push(sibling.name);
+
+          await processWorkspaceSiblings(sibling);
+        }
+      }),
+    );
+  };
+
+  await Promise.all(
+    workspaces.map((workspace: Workspace) =>
+      processWorkspaceSiblings(workspace),
+    ),
+  );
+
   return releaseContext;
+}
+
+function getWorkspaceDependencies(workspace, workspaces) {
+  let dependencies = Object.keys({
+    ...workspace.manifest.dependencies,
+    ...workspace.manifest.devDependencies,
+    ...workspace.manifest.peerDependencies,
+  });
+
+  dependencies = dependencies.filter((dependency) =>
+    workspaces.some((workspace) => workspace.name === dependency),
+  );
+
+  return dependencies;
 }
 
 async function getPublishableWorkspaces(context) {
@@ -327,6 +428,23 @@ function isBreakingChange(commit) {
 function isGreaterReleaseType(currentType, type) {
   return RELEASE_TYPES.indexOf(type) > RELEASE_TYPES.indexOf(currentType);
 }
+
+function getNextVersion(currentVersion: string, nextRelease) {
+  if (!nextRelease) {
+    return null;
+  }
+
+  return semver.inc(currentVersion, nextRelease);
+}
+
+function getNextTag(workspaceName, nextVersion) {
+  if (!nextVersion) {
+    return null;
+  }
+
+  return `${workspaceName}@v${nextVersion}`;
+}
+
 async function configureRegistryAuth(releaseContext, options, env) {
   let configPath = path.resolve(os.homedir(), '.yarnrc.yml');
 
@@ -362,7 +480,7 @@ async function addAuthToken(configPath, registry, token) {
   await fs.writeFile(configPath, yaml.stringify(registryConfig));
 }
 
-async function getAuthToken(configPath, registry) {
+async function getAuthToken(configPath, registry): Promise<string | null> {
   try {
     let configString = await fs.readFile(configPath, 'utf8');
     let config = yaml.parse(configString);
@@ -400,7 +518,16 @@ async function releaseWorkspace(workspace, releaseContext, options, env) {
   await pushChanges(workspace, options, env);
 }
 
-async function generateReleaseNotes(workspace, commits, nextVersion, options) {
+async function generateReleaseNotes(
+  workspace,
+  commits,
+  nextVersion,
+  options,
+): Promise<string> {
+  if (!nextVersion) {
+    return '';
+  }
+
   let repositoryURLInfo = hostedGitInfo.fromUrl(options.repositoryURL);
 
   let changelogContext = {
