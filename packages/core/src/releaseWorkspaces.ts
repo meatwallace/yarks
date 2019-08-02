@@ -69,6 +69,16 @@ export async function releaseWorkspaces(options) {
 
   await configureRegistryAuth(releaseContext, options, env);
 
+  // bump workspace versions and write changelogs
+  for (let workspaceName of workspaceNames) {
+    let workspace = releaseContext[workspaceName];
+
+    workspace = await prepareWorkspace(workspace, releaseContext, options, env);
+
+    releaseContext[workspaceName] = workspace;
+  }
+
+  // publish packages to NPM, commit changes and push to git
   for (let workspaceName of workspaceNames) {
     let workspace = releaseContext[workspaceName];
 
@@ -364,8 +374,7 @@ async function getAuthToken(configPath, registry) {
   }
 }
 
-async function releaseWorkspace(workspace, releaseContext, options, env) {
-  // if a release is not required bail out early
+async function prepareWorkspace(workspace, releaseContext, options, env) {
   if (!workspace.nextRelease) {
     return workspace;
   }
@@ -375,6 +384,15 @@ async function releaseWorkspace(workspace, releaseContext, options, env) {
   });
 
   await updateChangelog(workspace, options);
+
+  return workspace;
+}
+
+async function releaseWorkspace(workspace, releaseContext, options, env) {
+  if (!workspace.nextRelease) {
+    return workspace;
+  }
+
   await stageReleaseFiles(workspace, options);
   await commitRelease(workspace, options, env);
   await tagRelease(workspace, options);
