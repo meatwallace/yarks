@@ -60,7 +60,7 @@
   },
   "files": [
     "CHANGELOG.md",
-    "dist",
+    "dist/*",
     "package.json",
     "README.md",
     "yarn.lock"
