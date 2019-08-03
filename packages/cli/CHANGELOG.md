@@ -1,5 +1,11 @@
 # @yarks/cli
 
+## 1.1.3 (2019-08-03)
+
+### Dependencies
+
+- **@yarks/core:** upgraded to 1.1.1
+
 ## 1.1.2 (2019-08-03)
 
 This release contains an erroneous reference to `@yarks/core` that will be
