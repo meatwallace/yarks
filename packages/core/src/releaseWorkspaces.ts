@@ -609,13 +609,13 @@ async function pushChanges(workspace, options, env) {
   await pushGitRef('master', options, env);
 
   // push tag
-  await pushGitRef(workspace.currentRelease, options, env);
+  await pushGitRef(workspace.nextTag, options, env);
 }
 
 async function pushGitRef(ref, options, env) {
   let result = await options.git.push({
     dir: options.cwd,
-    ref,
+    ref: workspace.currentRelease,
     token: env.GITHUB_TOKEN,
     // TODO(#26): accomodate other git hosts and other repository URL formats
     url: options.repositoryURL,
