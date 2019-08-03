@@ -1,5 +1,22 @@
 # @yarks/core
 
+# 1.1.0 (2019-08-03)
+
+### Bug Fixes
+
+- **versioning:** bump workspace versions prior to publishing
+  ([3363fc3](https://github.com/meatwallace/yarks/commit/3363fc3)), closes
+  [#49](https://github.com/meatwallace/yarks/issues/49)
+
+### Features
+
+- **git:** push git tag of each release
+  ([8e32340](https://github.com/meatwallace/yarks/commit/8e32340)), closes
+  [#29](https://github.com/meatwallace/yarks/issues/29)
+- **workspaces:** release dependent sibling workspaces
+  ([b4ed8d5](https://github.com/meatwallace/yarks/commit/b4ed8d5)), closes
+  [#16](https://github.com/meatwallace/yarks/issues/16)
+
 # 1.0.0 (2019-08-01)
 
 ### Bug Fixes
