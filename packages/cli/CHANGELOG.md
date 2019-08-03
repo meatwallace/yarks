@@ -2,9 +2,8 @@
 
 ## 1.1.2 (2019-08-03)
 
-### Dependencies
-
-- **@yarks/core:** upgraded to 1.1.1
+This release contains an erroneous reference to `@yarks/core` that will be
+resolved in the following release.
 
 ## 1.1.1 (2019-08-02)
 
