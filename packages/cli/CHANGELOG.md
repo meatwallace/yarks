@@ -1,5 +1,11 @@
 # @yarks/cli
 
+## 1.1.2 (2019-08-03)
+
+### Dependencies
+
+- **@yarks/core:** upgraded to 1.1.1
+
 ## 1.1.1 (2019-08-02)
 
 ### Dependencies
