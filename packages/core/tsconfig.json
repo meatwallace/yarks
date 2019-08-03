@@ -1,5 +1,6 @@
 {
-  "include": ["src", "types"],
+  "exclude": ["src/**/*.test.ts"],
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
@@ -13,17 +14,18 @@
     // "strictNullChecks": true,
     // "strictFunctionTypes": true,
     // "strictPropertyInitialization": true,
-    // "noImplicitThis": true,
+    "noImplicitThis": true,
     // "alwaysStrict": true,
-    // "noUnusedLocals": true,
+    "noUnusedLocals": true,
     // "noUnusedParameters": true,
     // "noImplicitReturns": true,
-    // "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
       "*": ["src/*"]
     },
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["node"]
   }
 }

@@ -1,4 +1,5 @@
 {
+  "exclude": ["src/**/*.test.ts"],
   "include": ["src", "types"],
   "compilerOptions": {
     "target": "es5",
@@ -13,12 +14,12 @@
     // "strictNullChecks": true,
     // "strictFunctionTypes": true,
     // "strictPropertyInitialization": true,
-    // "noImplicitThis": true,
+    "noImplicitThis": true,
     // "alwaysStrict": true,
-    // "noUnusedLocals": true,
+    "noUnusedLocals": true,
     // "noUnusedParameters": true,
     // "noImplicitReturns": true,
-    // "noFallthroughCasesInSwitch": true,
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
