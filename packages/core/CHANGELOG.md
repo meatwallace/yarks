@@ -1,5 +1,16 @@
 # @yarks/core
 
+## 1.1.1 (2019-08-03)
+
+### Bug Fixes
+
+- **core:** include dist directory in published files
+  ([eba7375](https://github.com/meatwallace/yarks/commit/eba7375))
+- **git:** remove hardcoded ref from push function
+  ([8ce86d4](https://github.com/meatwallace/yarks/commit/8ce86d4))
+- **tags:** use next release's tag as ref when pushing
+  ([ac891c7](https://github.com/meatwallace/yarks/commit/ac891c7))
+
 # 1.1.0 (2019-08-03)
 
 ### Bug Fixes
