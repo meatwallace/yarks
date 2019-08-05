@@ -1,13 +1,14 @@
-import { Workspace } from './types';
+import { CommitDescription } from 'isomorphic-git';
+import { Options, Workspace } from './types';
 
 export async function filterWorkspaceCommits(
   workspace: Workspace,
-  commits,
-  options,
-) {
-  let lastSHA = null;
-  let lastCommit = null;
-  let workspaceCommits = [];
+  commits: Array<CommitDescription>,
+  options: Options,
+): Promise<Array<CommitDescription>> {
+  let lastSHA: string | null = null;
+  let lastCommit: CommitDescription | null = null;
+  let workspaceCommits: Array<CommitDescription> = [];
 
   for (let commit of commits) {
     try {
@@ -17,7 +18,7 @@ export async function filterWorkspaceCommits(
         filepath: workspace.location,
       });
 
-      if (o.oid !== lastSHA && lastSHA !== null) {
+      if (o.oid !== lastSHA && lastSHA !== null && lastCommit) {
         workspaceCommits.push(lastCommit);
       }
 
@@ -25,7 +26,9 @@ export async function filterWorkspaceCommits(
         lastSHA = o.oid;
       }
     } catch (error) {
-      workspaceCommits.push(lastCommit);
+      if (lastCommit) {
+        workspaceCommits.push(lastCommit);
+      }
 
       break;
     }

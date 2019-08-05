@@ -1,10 +1,13 @@
+import { Commit } from 'conventional-commits-parser';
 import { RELEASE_TYPE } from './enums/releaseType';
 import { HIGHEST_RELEASE_TYPE } from './consts';
 import { getCommitReleaseType } from './getCommitReleaseType';
 import { isGreaterReleaseType } from './isGreaterReleaseType';
 
-export function getNextReleaseType(commits): RELEASE_TYPE | null {
-  let nextRelease = null;
+export function getNextReleaseType(
+  commits: Array<Commit>,
+): RELEASE_TYPE | null {
+  let nextRelease: RELEASE_TYPE | null = null;
 
   commits.every((commit) => {
     let commitReleaseType = getCommitReleaseType(commit);

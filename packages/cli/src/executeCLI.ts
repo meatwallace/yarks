@@ -5,7 +5,7 @@ import prettier from 'prettier';
 import { getWorkspaceManifest, releaseWorkspaces } from '@yarks/core';
 import { getManifestRepositoryURL } from './getManifestRepositoryURL';
 
-export async function executeCLI() {
+export async function executeCLI(): Promise<void> {
   git.plugins.set('fs', fs);
 
   let changelogConfig = await conventionalChangelogAngular;

@@ -31,13 +31,15 @@
     "@yarks/core": "workspace:packages/core",
     "conventional-changelog-angular": "5.0.3",
     "isomorphic-git": "0.55.5",
-    "prettier": "1.18.2"
+    "prettier": "1.18.2",
+    "tiny-invariant": "1.0.6",
+    "type-fest": "0.7.1"
   },
   "devDependencies": {
     "@berry/pnpify": "0.0.6",
     "@types/jest": "24.0.16",
     "@types/node": "12.6.9",
-    "@types/prettier": "1.16.4",
+    "@types/prettier": "1.18.1",
     "@types/typescript": "2.0.0",
     "jest": "24.8.0",
     "ts-jest": "24.0.2",

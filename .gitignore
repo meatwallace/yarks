@@ -1,7 +1,14 @@
-*.log
+# junk
 .DS_Store
-node_modules
+*.log
+
+# system
+.vscode
+
+# rollup cache
 .rts2_cache_cjs
 .rts2_cache_esm
 .rts2_cache_umd
+
+# build output
 dist

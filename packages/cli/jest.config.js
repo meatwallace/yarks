@@ -8,6 +8,7 @@ module.exports = {
         ignoreCodes: [
           // TODO(#51): remove when ts-jest correctly picks up @types modules
           2304,
+          2307,
           2593,
           2688,
         ],

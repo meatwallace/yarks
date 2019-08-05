@@ -1,8 +1,12 @@
 import { promises as fs } from 'fs';
 import * as path from 'path';
 import { formatMarkdown } from './formatMarkdown';
+import { Options, WorkspaceReleaseContext } from './types';
 
-export async function updateChangelog(workspace, options) {
+export async function updateChangelog(
+  workspace: WorkspaceReleaseContext,
+  options: Options,
+) {
   let changelogPath = path.resolve(workspace.location, 'CHANGELOG.md');
   let changelog = '';
 

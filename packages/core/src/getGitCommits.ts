@@ -1,10 +1,10 @@
-import { Commit, Workspace } from './types';
+import { CommitDescription } from 'isomorphic-git';
+import { Options } from './types';
 
 export async function getGitCommits(
-  workspace: Workspace,
   currentRelease: string | null,
-  options,
-): Promise<Array<Commit>> {
+  options: Options,
+): Promise<Array<CommitDescription>> {
   let commits = [];
 
   // if there's no current release, just get the entire commit log

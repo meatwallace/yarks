@@ -1,15 +1,15 @@
 import filterCommits from 'conventional-commits-filter';
-import parseCommit from 'conventional-commits-parser';
+import parseCommit, { Commit } from 'conventional-commits-parser';
 import { filterWorkspaceCommits } from './filterWorkspaceCommits';
 import { getGitCommits } from './getGitCommits';
-import { Commit, Workspace } from './types';
+import { Options, Workspace } from './types';
 
 export async function getWorkspaceCommits(
   workspace: Workspace,
-  currentRelease: string,
-  options,
+  currentRelease: string | null,
+  options: Options,
 ): Promise<Array<Commit>> {
-  let commits = await getGitCommits(workspace, currentRelease, options);
+  let commits = await getGitCommits(currentRelease, options);
 
   // if we are evaluating a non-root workspace, then we want to filter out any
   // commits that aren't relevant
@@ -19,13 +19,13 @@ export async function getWorkspaceCommits(
 
   // parse the commit messages and create commit objects compatible with
   // conventional-changelog
-  commits = commits.map((commit) => {
-    return { ...commit, hash: commit.oid, ...parseCommit.sync(commit.message) };
+  let parsedCommits = commits.map((commit) => {
+    return parseCommit.sync(commit.message);
   });
 
   // run conventional-changelog's filter to remove any unnecesary commits ex.
   // commits that were reverted in the same release
-  commits = filterCommits(commits);
+  parsedCommits = filterCommits(parsedCommits);
 
-  return commits;
+  return parsedCommits;
 }

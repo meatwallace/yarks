@@ -1,13 +1,11 @@
 import execa from 'execa';
 import { updateChangelog } from './updateChangelog';
-import { ReleaseContext, Workspace } from './types';
+import { Options, WorkspaceReleaseContext } from './types';
 
 export async function prepareWorkspace(
-  workspace: Workspace,
-  releaseContext: ReleaseContext,
-  options,
-  env,
-): Promise<Workspace> {
+  workspace: WorkspaceReleaseContext,
+  options: Options,
+): Promise<WorkspaceReleaseContext> {
   if (!workspace.nextRelease) {
     return workspace;
   }

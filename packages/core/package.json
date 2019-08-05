@@ -25,6 +25,7 @@
     "start": "pnpify tsdx watch --target node"
   },
   "dependencies": {
+    "@berry/core": "0.1.0",
     "conventional-changelog-writer": "4.0.3",
     "conventional-commits-filter": "2.0.1",
     "conventional-commits-parser": "3.0.1",
@@ -35,10 +36,13 @@
     "hosted-git-info": "2.7.1",
     "into-stream": "5.1.0",
     "is-ci": "2.0.0",
+    "isomorphic-git": "0.58.1",
     "prettier": "1.18.2",
     "semver": "6.2.0",
-    "tiny-invariant": "1.0.5",
+    "tiny-invariant": "1.0.6",
     "tiny-warning": "1.0.3",
+    "ts-enum-util": "4.0.1",
+    "type-fest": "0.7.1",
     "yaml": "1.6.0"
   },
   "devDependencies": {
@@ -51,7 +55,7 @@
     "@types/is-ci": "2.0.0",
     "@types/jest": "24.0.16",
     "@types/node": "12.6.9",
-    "@types/prettier": "1.16.4",
+    "@types/prettier": "1.18.1",
     "@types/semver": "6.0.1",
     "@types/typescript": "2.0.0",
     "@types/yaml": "1.0.2",

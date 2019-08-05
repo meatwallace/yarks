@@ -3,13 +3,15 @@ import isCI from 'is-ci';
 import { configureRegistryAuth } from './configureRegistryAuth';
 import { createReleaseContext } from './createReleaseContext';
 import { formatMarkdown } from './formatMarkdown';
-import { getPublishableWorkspaces } from './getPublishableWorkspaces';
+import { getWorkspaces } from './getWorkspaces';
 import { prepareWorkspace } from './prepareWorkspace';
 import { releaseWorkspace } from './releaseWorkspace';
+import { Options, ReleaseContext } from './types';
 
-export async function releaseWorkspaces(options) {
-  let workspaces = await getPublishableWorkspaces(options);
-  let workspaceNames = workspaces.map((workspace) => workspace.name);
+export async function releaseWorkspaces(
+  options: Options,
+): Promise<ReleaseContext> {
+  let workspaces = await getWorkspaces(options);
   let releaseContext = await createReleaseContext(workspaces, options);
 
   // log out an overview of our release strategy
@@ -46,22 +48,22 @@ export async function releaseWorkspaces(options) {
   // TODO(#22): extract env validation to function and pass via options
   let env = cleanEnv(process.env, schema, { strict: true });
 
-  await configureRegistryAuth(releaseContext, options, env);
+  await configureRegistryAuth(env);
 
   // bump workspace versions and write changelogs
-  for (let workspaceName of workspaceNames) {
+  for (let workspaceName in releaseContext) {
     let workspace = releaseContext[workspaceName];
 
-    workspace = await prepareWorkspace(workspace, releaseContext, options, env);
+    workspace = await prepareWorkspace(workspace, options);
 
     releaseContext[workspaceName] = workspace;
   }
 
   // publish packages to NPM, commit changes and push to git
-  for (let workspaceName of workspaceNames) {
+  for (let workspaceName in releaseContext) {
     let workspace = releaseContext[workspaceName];
 
-    workspace = await releaseWorkspace(workspace, releaseContext, options, env);
+    workspace = await releaseWorkspace(workspace, options, env);
 
     releaseContext[workspaceName] = workspace;
   }
