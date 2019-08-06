@@ -1,6 +1,7 @@
 {
   "include": ["src/**/*.ts"],
   "compilerOptions": {
+    "types": ["jest", "node"],
     "target": "es5",
     "module": "esnext",
     "lib": ["esnext"],

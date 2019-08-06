@@ -1,6 +1,8 @@
 import { RELEASE_TYPE } from './releaseType';
 
 test('it contains the expected values', () => {
+  expect.assertions(1);
+
   expect(RELEASE_TYPE).toMatchInlineSnapshot(`
     Object {
       "MAJOR": "major",

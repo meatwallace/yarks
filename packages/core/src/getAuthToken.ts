@@ -1,17 +1,18 @@
-import { promises as fs } from 'fs';
-import yaml from 'yaml';
+import { oc } from 'ts-optchain';
+import { parseYamlFile } from './parseYamlFile';
+import { YarnConfig } from './types';
 
 export async function getAuthToken(
   configPath: string,
   registry: string,
 ): Promise<string | null> {
-  try {
-    let configString = await fs.readFile(configPath, 'utf8');
-    let config = yaml.parse(configString);
-    let token = config.npmRegistries[registry].npmAuthToken;
+  let token = null;
 
-    return token;
-  } catch (error) {
-    return null;
-  }
+  try {
+    let config = await parseYamlFile<Partial<YarnConfig>>(configPath);
+
+    token = oc(config).npmRegistries[registry].npmAuthToken() || null;
+  } catch {}
+
+  return token;
 }

@@ -2,8 +2,12 @@ import { RELEASE_TYPE } from './enums/releaseType';
 import { RELEASE_TYPES } from './consts';
 
 export function isGreaterReleaseType(
-  currentType: RELEASE_TYPE | null,
-  type: RELEASE_TYPE | null,
+  current: RELEASE_TYPE | null,
+  proposed: RELEASE_TYPE | null,
 ): boolean {
-  return RELEASE_TYPES.indexOf(type) > RELEASE_TYPES.indexOf(currentType);
+  if (current === null) {
+    return true;
+  }
+
+  return RELEASE_TYPES.indexOf(current) > RELEASE_TYPES.indexOf(proposed);
 }

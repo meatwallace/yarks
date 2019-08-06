@@ -42,7 +42,7 @@ export async function createReleaseContext(
         return accum;
       }
 
-      let currentRelease = getCurrentRelease(workspace, tags);
+      let currentRelease = getCurrentRelease(workspace.name, tags);
       let commits = await getWorkspaceCommits(
         workspace,
         currentRelease,

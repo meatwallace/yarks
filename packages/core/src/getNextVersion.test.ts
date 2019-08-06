@@ -4,6 +4,8 @@ import { getNextVersion } from './getNextVersion';
 const version = '1.0.0';
 
 test('it increments the given version correctly given a valid semver release type', () => {
+  expect.assertions(7);
+
   expect(getNextVersion(version, RELEASE_TYPE.MAJOR)).toBe('2.0.0');
   expect(getNextVersion(version, RELEASE_TYPE.MINOR)).toBe('1.1.0');
   expect(getNextVersion(version, RELEASE_TYPE.PATCH)).toBe('1.0.1');
@@ -14,5 +16,7 @@ test('it increments the given version correctly given a valid semver release typ
 });
 
 test('it returns null if not provided a release type', () => {
+  expect.assertions(1);
+
   expect(getNextVersion(version, null)).toBe(null);
 });

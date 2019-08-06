@@ -1,3 +1,5 @@
+import * as os from 'os';
+import * as path from 'path';
 import { cleanEnv, str } from 'envalid';
 import isCI from 'is-ci';
 import { configureRegistryAuth } from './configureRegistryAuth';
@@ -48,7 +50,14 @@ export async function releaseWorkspaces(
   // TODO(#22): extract env validation to function and pass via options
   let env = cleanEnv(process.env, schema, { strict: true });
 
-  await configureRegistryAuth(env);
+  // TODO(#56): pass yarn config path from cli to api opts
+  let configPath = path.resolve(os.homedir(), '.yarnrc.yml');
+
+  // TODO(#21): replace hardcoded registry with default from yarn config
+  let registry = 'https://registry.yarnpkg.com';
+
+  // TODO(#4): iterate over packages and authenticate against relevant registry
+  await configureRegistryAuth(configPath, registry, env.NPM_TOKEN);
 
   // bump workspace versions and write changelogs
   for (let workspaceName in releaseContext) {

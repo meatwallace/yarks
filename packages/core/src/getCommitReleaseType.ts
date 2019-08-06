@@ -13,6 +13,7 @@ export function getCommitReleaseType(commit: Commit): RELEASE_TYPE | null {
     return RELEASE_TYPE.PATCH;
   }
 
+  // TODO(#55): allow customization of mapping via configuration
   let releaseType = $enum.mapValue(commit.type).with({
     [COMMIT_TYPE_RELEASE_TYPE.FEAT]: RELEASE_TYPE.MINOR,
     [COMMIT_TYPE_RELEASE_TYPE.FIX]: RELEASE_TYPE.PATCH,

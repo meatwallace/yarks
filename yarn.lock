@@ -1650,12 +1650,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:24.0.16":
-  version: 24.0.16
-  resolution: "@types/jest@npm:24.0.16"
+"@types/jest@npm:24.0.17":
+  version: 24.0.17
+  resolution: "@types/jest@npm:24.0.17"
   dependencies:
     "@types/jest-diff": "npm:*"
-  checksum: fa0bad62c7d904452efa0376700d7f3763ac29725d1421accbcf6723512662fb1d649ab5f1d36c456ee399b633a95b71fb3bd7a79a14f1176468562d8475da65
+  checksum: f8e4d7729c872aad441309a705b7df15ac4e7cfd7c11df2ea46a07fdfd534c26023b17f53428d90d9782a81fd13fd7d1a64edbd245245d35dbba6569c0810806
   languageName: node
   linkType: hard
 
@@ -1941,7 +1941,7 @@ __metadata:
   resolution: "@yarks/cli@workspace:packages/cli"
   dependencies:
     "@berry/pnpify": "npm:0.0.6"
-    "@types/jest": "npm:24.0.16"
+    "@types/jest": "npm:24.0.17"
     "@types/node": "npm:12.6.9"
     "@types/prettier": "npm:1.18.1"
     "@types/typescript": "npm:2.0.0"
@@ -1973,7 +1973,7 @@ __metadata:
     "@types/hosted-git-info": "npm:2.7.0"
     "@types/into-stream": "npm:3.1.1"
     "@types/is-ci": "npm:2.0.0"
-    "@types/jest": "npm:24.0.16"
+    "@types/jest": "npm:24.0.17"
     "@types/node": "npm:12.6.9"
     "@types/prettier": "npm:1.18.1"
     "@types/semver": "npm:6.0.1"
@@ -1991,12 +1991,14 @@ __metadata:
     is-ci: "npm:2.0.0"
     isomorphic-git: "npm:0.58.1"
     jest: "npm:24.8.0"
+    metro-memory-fs: "npm:0.55.0"
     prettier: "npm:1.18.2"
     semver: "npm:6.2.0"
     tiny-invariant: "npm:1.0.6"
     tiny-warning: "npm:1.0.3"
     ts-enum-util: "npm:4.0.1"
     ts-jest: "npm:24.0.2"
+    ts-optchain: "npm:0.1.8"
     tsdx: "npm:0.7.2"
     tslib: "npm:1.10.0"
     type-fest: "npm:0.7.1"
@@ -2015,6 +2017,8 @@ __metadata:
     "@meatwallace/commitlint-config": "npm:1.2.0"
     "@meatwallace/jest-config-base": "npm:1.3.0"
     "@meatwallace/prettier-config": "npm:1.2.0"
+    "@types/jest": "npm:24.0.17"
+    "@types/node": "npm:12.6.9"
     "@yarks/cli": "workspace:packages/cli"
     babel-plugin-transform-async-to-promises: "npm:0.8.12"
     chalk: "npm:2.4.2"
@@ -7448,6 +7452,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"metro-memory-fs@npm:0.55.0":
+  version: 0.55.0
+  resolution: "metro-memory-fs@npm:0.55.0"
+  checksum: 4fdc914544a2008e60cc17fc4393452c3adf899c7dafc8c138d9a85c0d99a91da2e0061f57723b56c078988b8471a2613ec5687b6b5b1a695b173dc2c98356a5
+  languageName: node
+  linkType: hard
+
 "micromatch@npm:^3.1.10, micromatch@npm:^3.1.4, micromatch@npm:^3.1.8":
   version: 3.1.10
   resolution: "micromatch@npm:3.1.10"
@@ -10736,6 +10747,13 @@ __metadata:
   bin:
     ts-jest: cli.js
   checksum: 88a8f1d809d2fcde877668e0717debd2a4e08a0bbc02882f3228882901ed6344230f3b12d321dba5fcfc04f48376d75af5b4dce3d556684882aa798626132dd7
+  languageName: node
+  linkType: hard
+
+"ts-optchain@npm:0.1.8":
+  version: 0.1.8
+  resolution: "ts-optchain@npm:0.1.8"
+  checksum: 4e02c2a67518695512861461d603df78d810337f58aed94d061c4e65211abe81fd4bb435784e1ddf6bdfea6ecc6eb11c0357898ef86944324b5b545c81294aa4
   languageName: node
   linkType: hard
 

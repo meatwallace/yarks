@@ -2,8 +2,11 @@ import * as fs from 'fs';
 import * as git from 'isomorphic-git';
 import conventionalChangelogAngular from 'conventional-changelog-angular';
 import prettier from 'prettier';
-import { getWorkspaceManifest, releaseWorkspaces } from '@yarks/core';
-import { getManifestRepositoryURL } from './getManifestRepositoryURL';
+import {
+  getManifestRepositoryURL,
+  getWorkspaceManifest,
+  releaseWorkspaces,
+} from '@yarks/core';
 
 export async function executeCLI(): Promise<void> {
   git.plugins.set('fs', fs);

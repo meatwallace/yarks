@@ -27,6 +27,8 @@
     "@meatwallace/commitlint-config": "1.2.0",
     "@meatwallace/jest-config-base": "1.3.0",
     "@meatwallace/prettier-config": "1.2.0",
+    "@types/jest": "24.0.17",
+    "@types/node": "12.6.9",
     "@yarks/cli": "workspace:packages/cli",
     "babel-plugin-transform-async-to-promises": "0.8.12",
     "chalk": "2.4.2",

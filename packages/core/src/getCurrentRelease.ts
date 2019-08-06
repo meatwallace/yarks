@@ -1,10 +1,10 @@
-import { Tag, Workspace } from './types';
+import { Tag } from './types';
 
 export function getCurrentRelease(
-  workspace: Workspace,
+  workspaceName: string,
   tags: Array<Tag>,
 ): Tag | null {
-  let lastRelease = tags.filter((tag) => tag.startsWith(workspace.name)).pop();
+  let lastRelease = tags.filter((tag) => tag.startsWith(workspaceName)).pop();
 
   return lastRelease || null;
 }

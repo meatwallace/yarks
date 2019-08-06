@@ -1,6 +1,6 @@
-import { promises as fs } from 'fs';
 import merge from 'deepmerge';
-import yaml from 'yaml';
+import { parseYamlFile } from './parseYamlFile';
+import { writeYamlFile } from './writeYamlFile';
 
 export async function addAuthToken(
   configPath: string,
@@ -16,11 +16,11 @@ export async function addAuthToken(
   };
 
   try {
-    let configString = await fs.readFile(configPath, 'utf8');
-
     // if we have a preexisting root config, merge our new auth options with it
-    registryConfig = merge(yaml.parse(configString), registryConfig);
-  } catch (error) {}
+    let existingConfig = await parseYamlFile(configPath);
 
-  await fs.writeFile(configPath, yaml.stringify(registryConfig));
+    registryConfig = merge(existingConfig, registryConfig);
+  } catch {}
+
+  await writeYamlFile(configPath, registryConfig);
 }

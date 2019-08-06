@@ -115,6 +115,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@meatwallace/commitlint-config", "npm:1.2.0"],
             ["@meatwallace/jest-config-base", "npm:1.3.0"],
             ["@meatwallace/prettier-config", "npm:1.2.0"],
+            ["@types/jest", "npm:24.0.17"],
+            ["@types/node", "npm:12.6.9"],
             ["@yarks/cli", "workspace:packages/cli"],
             ["babel-plugin-transform-async-to-promises", "npm:0.8.12"],
             ["chalk", "npm:2.4.2"],
@@ -2744,10 +2746,10 @@ function $$SETUP_STATE(hydrateRuntimeState) {
         }]
       ]],
       ["@types/jest", [
-        ["npm:24.0.16", {
-          "packageLocation": "./.yarn/cache/@types-jest-npm-24.0.16-a20c2aa8dc04ad2f1e621ce682f454c783022a40fd9b6b7424280960a3e2b7fb.zip/node_modules/@types/jest/",
+        ["npm:24.0.17", {
+          "packageLocation": "./.yarn/cache/@types-jest-npm-24.0.17-1649dfff51f6dd76ab8dcf964b632536029d27e0e0c36976687939735cba2388.zip/node_modules/@types/jest/",
           "packageDependencies": [
-            ["@types/jest", "npm:24.0.16"],
+            ["@types/jest", "npm:24.0.17"],
             ["@types/jest-diff", "npm:20.0.1"]
           ]
         }]
@@ -3058,7 +3060,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
           "packageDependencies": [
             ["@yarks/cli", "workspace:packages/cli"],
             ["@berry/pnpify", "virtual:446d646060f7a54dda658abcabb7722bc08fdb9afe0bec009db0a0da2e79e268f8aeeb9703831916c23f44bd06d4f4b8ba93ec8e37f921658c70569031b0e427#npm:0.0.6"],
-            ["@types/jest", "npm:24.0.16"],
+            ["@types/jest", "npm:24.0.17"],
             ["@types/node", "npm:12.6.9"],
             ["@types/prettier", "npm:1.18.1"],
             ["@types/typescript", "npm:2.0.0"],
@@ -3089,7 +3091,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@types/hosted-git-info", "npm:2.7.0"],
             ["@types/into-stream", "npm:3.1.1"],
             ["@types/is-ci", "npm:2.0.0"],
-            ["@types/jest", "npm:24.0.16"],
+            ["@types/jest", "npm:24.0.17"],
             ["@types/node", "npm:12.6.9"],
             ["@types/prettier", "npm:1.18.1"],
             ["@types/semver", "npm:6.0.1"],
@@ -3107,12 +3109,14 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["is-ci", "npm:2.0.0"],
             ["isomorphic-git", "npm:0.58.1"],
             ["jest", "npm:24.8.0"],
+            ["metro-memory-fs", "npm:0.55.0"],
             ["prettier", "npm:1.18.2"],
             ["semver", "npm:6.2.0"],
             ["tiny-invariant", "npm:1.0.6"],
             ["tiny-warning", "npm:1.0.3"],
             ["ts-enum-util", "virtual:f55b2bf7bd7c2e72f522160ae2b5b2e6a3b91ee6645840bd1d35badcf571fb09cd76b32ff2300b5c7f928ea2f4aa80de3531896de8f51d3cf6771d95cfdf6378#npm:4.0.1"],
             ["ts-jest", "virtual:f55b2bf7bd7c2e72f522160ae2b5b2e6a3b91ee6645840bd1d35badcf571fb09cd76b32ff2300b5c7f928ea2f4aa80de3531896de8f51d3cf6771d95cfdf6378#npm:24.0.2"],
+            ["ts-optchain", "npm:0.1.8"],
             ["tsdx", "virtual:f55b2bf7bd7c2e72f522160ae2b5b2e6a3b91ee6645840bd1d35badcf571fb09cd76b32ff2300b5c7f928ea2f4aa80de3531896de8f51d3cf6771d95cfdf6378#npm:0.7.2"],
             ["tslib", "npm:1.10.0"],
             ["type-fest", "npm:0.7.1"],
@@ -3132,6 +3136,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["@meatwallace/commitlint-config", "npm:1.2.0"],
             ["@meatwallace/jest-config-base", "npm:1.3.0"],
             ["@meatwallace/prettier-config", "npm:1.2.0"],
+            ["@types/jest", "npm:24.0.17"],
+            ["@types/node", "npm:12.6.9"],
             ["@yarks/cli", "workspace:packages/cli"],
             ["babel-plugin-transform-async-to-promises", "npm:0.8.12"],
             ["chalk", "npm:2.4.2"],
@@ -8640,6 +8646,14 @@ function $$SETUP_STATE(hydrateRuntimeState) {
           ]
         }]
       ]],
+      ["metro-memory-fs", [
+        ["npm:0.55.0", {
+          "packageLocation": "./.yarn/cache/metro-memory-fs-npm-0.55.0-0bce0f7af95f7530247c94d256d1b956cfaabbc5b8decd588e17b28fcc253071.zip/node_modules/metro-memory-fs/",
+          "packageDependencies": [
+            ["metro-memory-fs", "npm:0.55.0"]
+          ]
+        }]
+      ]],
       ["micromatch", [
         ["npm:3.1.10", {
           "packageLocation": "./.yarn/cache/micromatch-npm-3.1.10-b1b5a2a6029e262ad5c528562a6a8d78c37fa11962bd172684bc55601b1ec11f.zip/node_modules/micromatch/",
@@ -12188,6 +12202,14 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["resolve", "npm:1.11.1"],
             ["semver", "npm:5.7.0"],
             ["yargs-parser", "npm:10.1.0"]
+          ]
+        }]
+      ]],
+      ["ts-optchain", [
+        ["npm:0.1.8", {
+          "packageLocation": "./.yarn/cache/ts-optchain-npm-0.1.8-bbe6850a0cef6d21617b8c059b322bbd402ceb6a8df2dd3e5504a70e4a11d94b.zip/node_modules/ts-optchain/",
+          "packageDependencies": [
+            ["ts-optchain", "npm:0.1.8"]
           ]
         }]
       ]],

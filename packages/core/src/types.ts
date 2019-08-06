@@ -44,3 +44,63 @@ export type WorkspaceReleaseContext = Workspace & {
 export type ReleaseContext = {
   [workspaceName: string]: WorkspaceReleaseContext;
 };
+
+export type YarnConfig = {
+  // @berry/core
+  bstatePath: string;
+  cacheFolder: string;
+  checksumBehaviour: string;
+  defaultLanguageName: string;
+  defaultProtocol: string;
+  enableAbsoluteVirtuals: boolean;
+  enableColors: boolean;
+  enableGlobalCache: boolean;
+  enableInlineBuilds: boolean;
+  enableNetwork: boolean;
+  enableScripts: boolean;
+  enableTimers: boolean;
+  frozenInstalls: boolean;
+  globalFolder: string;
+  httpProxy: string | null;
+  httpsProxy: string | null;
+  initLicense: string;
+  initScope: string;
+  initVersion: string;
+  lastUpdateCheck: string | null;
+  lockfileFilename: string;
+  ignorePath: boolean;
+  preferInteractive: boolean;
+  rcFilename: string;
+  virtualFolder: string;
+  yarnPath: string | null;
+
+  // @berry/plugin-npm
+  npmAlwaysAuth: boolean;
+  npmAuthIdent: string | null;
+  npmAuthToken: string | null;
+  npmPublishAccess: string;
+  npmPublishRegistry: string | null;
+  npmRegistries: {
+    [registry: string]: {
+      npmAlwaysAuth: boolean;
+      npmAuthToken: string;
+      npmAuthIdent: string | null;
+    };
+  };
+  npmRegistryServer: string;
+  npmScopes: {
+    [scope: string]: {
+      npmPublishRegistry: string | null;
+      npmRegistryServer: string;
+    };
+  };
+
+  // @berry/plugin-pnp
+  pnpDataPath: string;
+  pnpEnableInlining: boolean;
+  pnpFallbackMode: 'off' | 'dependencies-only' | 'all';
+  pnpIgnorePattern: string | null;
+  pnpPath: string;
+  pnpShebang: string;
+  pnpUnpluggedFolder: string;
+};
