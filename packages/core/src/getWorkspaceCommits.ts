@@ -1,6 +1,6 @@
 import filterCommits from 'conventional-commits-filter';
 import parseCommit, { Commit } from 'conventional-commits-parser';
-import { filterWorkspaceCommits } from './filterWorkspaceCommits';
+import { GitCommit } from '@yarks/git';
 import { getGitCommits } from './getGitCommits';
 import { Options, Workspace } from './types';
 
@@ -9,18 +9,12 @@ export async function getWorkspaceCommits(
   currentRelease: string | null,
   options: Options,
 ): Promise<Array<Commit>> {
-  let commits = await getGitCommits(currentRelease, options);
-
-  // if we are evaluating a non-root workspace, then we want to filter out any
-  // commits that aren't relevant
-  if (workspace.location !== '.') {
-    commits = await filterWorkspaceCommits(workspace, commits, options);
-  }
+  let commits = await getGitCommits(workspace, currentRelease, options);
 
   // parse the commit messages and create commit objects compatible with
   // conventional-changelog
-  let parsedCommits = commits.map((commit) => {
-    return parseCommit.sync(commit.message);
+  let parsedCommits = commits.map((commit: GitCommit) => {
+    return parseCommit.sync(`${commit.subject}\n${commit.body}`);
   });
 
   // run conventional-changelog's filter to remove any unnecesary commits ex.

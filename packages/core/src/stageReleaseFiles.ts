@@ -1,11 +1,13 @@
 import * as path from 'path';
 import { Options, WorkspaceReleaseContext } from './types';
 
+const DEFAULT_FILES = ['package.json', 'CHANGELOG.md'];
+
 export async function stageReleaseFiles(
   workspace: WorkspaceReleaseContext,
   options: Options,
 ): Promise<void> {
-  let files = ['package.json', 'CHANGELOG.md'];
+  let files = [...DEFAULT_FILES];
 
   if (workspace.manifest.files) {
     // TODO: dedupe
@@ -16,9 +18,5 @@ export async function stageReleaseFiles(
     return path.join(workspace.location, file);
   });
 
-  for (let filepath of files) {
-    try {
-      await options.git.add({ dir: options.cwd, filepath });
-    } catch {}
-  }
+  await options.git.add(files, { cwd: options.cwd });
 }

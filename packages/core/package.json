@@ -26,6 +26,8 @@
   },
   "dependencies": {
     "@berry/core": "0.1.0",
+    "@yarks/git": "workspace:packages/git",
+    "chalk": "2.4.2",
     "conventional-changelog-writer": "4.0.3",
     "conventional-commits-filter": "2.0.1",
     "conventional-commits-parser": "3.0.1",
@@ -36,7 +38,6 @@
     "hosted-git-info": "2.7.1",
     "into-stream": "5.1.0",
     "is-ci": "2.0.0",
-    "isomorphic-git": "0.58.1",
     "prettier": "1.18.2",
     "semver": "6.2.0",
     "tiny-invariant": "1.0.6",
@@ -48,8 +49,9 @@
   },
   "devDependencies": {
     "@berry/pnpify": "0.0.6",
+    "@types/chalk": "2.2.0",
     "@types/deepmerge": "2.2.0",
-    "@types/execa": "0.9.0",
+    "@types/execa": "2.0.0",
     "@types/get-stream": "3.0.2",
     "@types/hosted-git-info": "2.7.0",
     "@types/into-stream": "3.1.1",
@@ -71,8 +73,7 @@
     "CHANGELOG.md",
     "dist/*",
     "package.json",
-    "README.md",
-    "yarn.lock"
+    "README.md"
   ],
   "keywords": [
     "automation",

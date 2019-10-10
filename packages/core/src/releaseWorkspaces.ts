@@ -72,7 +72,7 @@ export async function releaseWorkspaces(
   for (let workspaceName in releaseContext) {
     let workspace = releaseContext[workspaceName];
 
-    workspace = await releaseWorkspace(workspace, options, env);
+    workspace = await releaseWorkspace(workspace, options);
 
     releaseContext[workspaceName] = workspace;
   }

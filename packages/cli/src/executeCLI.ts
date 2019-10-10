@@ -1,5 +1,4 @@
-import * as fs from 'fs';
-import * as git from 'isomorphic-git';
+import * as git from '@yarks/git';
 import conventionalChangelogAngular from 'conventional-changelog-angular';
 import prettier from 'prettier';
 import {
@@ -9,8 +8,6 @@ import {
 } from '@yarks/core';
 
 export async function executeCLI(): Promise<void> {
-  git.plugins.set('fs', fs);
-
   let changelogConfig = await conventionalChangelogAngular;
   let cwd = process.cwd();
   let prettierConfig = await prettier.resolveConfig(cwd);
